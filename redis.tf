@@ -3,7 +3,7 @@ resource "docker_image" "redis" {
 }
 
 resource "docker_container" "redis" {
-  name = "redis-server"
+  name = "redis"
   image = docker_image.redis.image_id
 
   ports {
