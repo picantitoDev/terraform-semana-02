@@ -11,5 +11,9 @@ resource "docker_container" "redis" {
     external = 6379
   }
 
+  networks_advanced {
+    name = docker_network.persistence_net.name
+  }
+
   restart = "always"
 }
