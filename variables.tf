@@ -3,5 +3,5 @@ variable "nginx_container_count" {
 }
 
 variable "nginx_base_port" {
-  type = number
+  type = number
 }
