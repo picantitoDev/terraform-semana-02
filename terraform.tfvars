@@ -1,2 +1,2 @@
-nginx_base_port = 3001
+nginx_base_port = 8080
 nginx_container_count = 3
