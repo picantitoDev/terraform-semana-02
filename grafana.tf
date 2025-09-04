@@ -5,6 +5,7 @@ resource "docker_image" "grafana" {
 
 resource "docker_container" "grafana" {
   image = docker_image.grafana.image_id
+  
   name  = "grafana-${terraform.workspace}"
   
   networks_advanced {
