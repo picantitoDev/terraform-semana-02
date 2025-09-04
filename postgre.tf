@@ -4,7 +4,7 @@ resource "docker_image" "postgres" {
 
 resource "docker_container" "postgres" {
   image = docker_image.postgres.image_id
-  name  = "postgres"
+  name  = "postgres-${terraform.workspace}"
   
   networks_advanced {
     name = docker_network.persistence_net.name
