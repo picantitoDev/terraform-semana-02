@@ -6,7 +6,7 @@ resource "docker_image" "nginx" {
 resource "docker_container" "nginx" {
   count = var.nginx_container_count
   
-  name  = "app-${terraform.workspace}}-${count.index + 1}"
+  name  = "app-${terraform.workspace}-${count.index + 1}"
   image = docker_image.nginx.image_id
   
   networks_advanced {
