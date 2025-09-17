@@ -1,6 +1,6 @@
 
-resource "docker_container" "nginx_1" {  
-  name  = "app-1"
+resource "docker_container" "app1" {  
+  name  = "app1"
   image = docker_image.nginx.image_id
   
   networks_advanced {
@@ -18,8 +18,8 @@ resource "docker_container" "nginx_1" {
   }
 }
 
-resource "docker_container" "nginx_2" {  
-  name  = "app-2"
+resource "docker_container" "app2" {  
+  name  = "app2"
   image = docker_image.nginx.image_id
   
   networks_advanced {
@@ -37,8 +37,8 @@ resource "docker_container" "nginx_2" {
   }
 }
 
-resource "docker_container" "nginx_3" {  
-  name  = "app-3"
+resource "docker_container" "app3" {  
+  name  = "app3"
   image = docker_image.nginx.image_id
   
   networks_advanced {
