@@ -53,20 +53,29 @@ terraform workspace select dev
 ### 3. Comandos a utilizar
 ```bash
 
+# Provisionamiento
+cd /iac
+
+# Inicializar terraform
+terraform init
+
 # Ver plan de ejecución
 terraform plan
 
 # Aplicar infraestructura
-terraform apply
+terraform apply --auto-approve
 
 # Verificar contenedores
 docker ps
 
-# Mover a la carpeta de Config
+# Configuracion
 cd ../config
 
 # Aplicar configuraciones con Ansible
-ansible-playbook playbook.yaml -i inventory
+sudo ansible-playbook -i inventory.ini playbook.yaml
+
+# Visitar la siguiente URL
+http://localhost:8080
 
 # Destruir infraestructura
 terraform destroy
@@ -76,7 +85,7 @@ terraform destroy
 
 | Servicio | Puerto | Justificación |
 |----------|--------|---------------|
-| **Nginx** | 8080, 8081, 8082 | El puerto 8080 se utiliza frecuentemente como alternativa al puerto 80 en servidores web y de aplicaciones, incluyendo instancias de NGINX. Esta práctica permite evitar conflictos con el puerto HTTP predeterminado (80), que puede estar ocupado por otros servicios o reservado para otra instancia en el host. |
+| **Nginx (Proxy)** | 8080 | El puerto 8080 se utiliza frecuentemente como alternativa al puerto 80 en servidores web y de aplicaciones, incluyendo instancias de NGINX. Esta práctica permite evitar conflictos con el puerto HTTP predeterminado (80), que puede estar ocupado por otros servicios o reservado para otra instancia en el host. |
 | **PostgreSQL** | 5432 | Puerto estándar de PostgreSQL. |
 | **Redis** | 6379 | Puerto por defecto de Redis. |
 | **Grafana** | 3000 | Puerto por defecto de Grafana. |
