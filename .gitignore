@@ -21,3 +21,5 @@ override.tf.json
 # Terraform CLI configuration files
 .terraformrc
 terraform.rc
+
+host_volumes/
