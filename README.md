@@ -62,6 +62,12 @@ terraform apply
 # Verificar contenedores
 docker ps
 
+# Mover a la carpeta de Config
+cd ../config
+
+# Aplicar configuraciones con Ansible
+ansible-playbook playbook.yaml -i inventory
+
 # Destruir infraestructura
 terraform destroy
 ```
