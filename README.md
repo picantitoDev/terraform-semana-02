@@ -1,4 +1,4 @@
-# Infraestructura con Terraform + Docker
+# Load Balancing con NGINX y uso de Ansible para configuración
 
 ## 👥 Grupo e Integrantes
 
@@ -15,7 +15,7 @@
 
 Este repositorio define una infraestructura local con Terraform y Docker compuesta por:
 
-* **Nginx**: múltiples contenedores balanceables por puerto
+* **Nginx**: tres instancias funcionand como web servers y una instancia funcionando como Load Balancer
 * **PostgreSQL**: base de datos en red de persistencia
 * **Redis**: caché en red de persistencia (sin volúmenes)
 * **Grafana**: monitoreo conectado a múltiples redes.
@@ -31,29 +31,16 @@ Este repositorio define una infraestructura local con Terraform y Docker compues
 
 ## 🚀 Instrucciones de Uso
 
-### 1. Clonar e inicializar
+### 1. Clonar el repositorio
 ```bash
 git clone git@github.com:picantitoDev/terraform-semana-02.git
 cd terraform-semana-02
-terraform init
-```
-### 2. Crear y moverse al ambiente de desarrollo:
-
-```bash
-# Listar workspaces existentes
-terraform workspace list
-
-# Crear workspace dev
-terraform workspace new dev
-
-# Moverse al workspace dev
-terraform workspace select dev
 ```
 
-### 3. Comandos a utilizar
+### 2. Provisionamiento
 ```bash
 
-# Provisionamiento
+# Directorio de infraestructura
 cd /iac
 
 # Inicializar terraform
@@ -67,19 +54,27 @@ terraform apply --auto-approve
 
 # Verificar contenedores
 docker ps
+```
 
-# Configuracion
+### 3. Configuración
+```bash
+
+# Directorio de configuración
 cd ../config
 
 # Aplicar configuraciones con Ansible
 sudo ansible-playbook -i inventory.ini playbook.yaml
+```
 
+### 4. Resultados
+```bash
 # Visitar la siguiente URL
 http://localhost:8080
 
-# Destruir infraestructura
+# Si deseamos borrar los recursos (en /iac)
 terraform destroy
 ```
+
 
 ## 🔌 Justificación de Puertos
 
@@ -96,17 +91,10 @@ terraform destroy
 
 ## 🔧 Problemas Durante el Desarrollo
 
-### 1. Configuración de Redes
+### Configuración de Redes
 - **Problema:** Contenedores no se comunicaban entre capas
 - **Solución:** Definir redes separadas (`app_net`, `persistence_net`, `monitor_net`)
 
-### 2. Subida de terraform.tfvars
-- **Problema:** Por buenas prácticas, terraform.tfvars no se debe subir al repositorio porque contiene variables sensibles (credenciales, passwords)
-- **Solución:** El docente nos indicó subirlo como ejemplo para fines académicos y evaluación del proyecto
-
 ## 🌐 Acceso a Servicios
 
-- **Nginx:** http://localhost:8080, 8081, 8082...
-- **Grafana:** http://localhost:3000 (admin/admin)
-- **PostgreSQL:** localhost:5432
-- **Redis:** localhost:6379
+- **Nginx (Proxy):** http://localhost:8080
