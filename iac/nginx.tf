@@ -3,10 +3,8 @@ resource "docker_image" "nginx" {
   keep_locally = false
 }
 
-resource "docker_container" "nginx" {
-  count = var.nginx_container_count
-  
-  name  = "app-${terraform.workspace}-${count.index + 1}"
+resource "docker_container" "nginx_1" {  
+  name  = "app-1"
   image = docker_image.nginx.image_id
   
   networks_advanced {
@@ -19,6 +17,42 @@ resource "docker_container" "nginx" {
 
   ports {
     internal = 80
-    external = var.nginx_base_port + count.index
+    external = 3001
+  }
+}
+
+resource "docker_container" "nginx_2" {  
+  name  = "app-2"
+  image = docker_image.nginx.image_id
+  
+  networks_advanced {
+    name = docker_network.app_net.name
+  }
+  
+  networks_advanced {
+    name = docker_network.persistence_net.name
+  }
+
+  ports {
+    internal = 80
+    external = 3002
+  }
+}
+
+resource "docker_container" "nginx_3" {  
+  name  = "app-3"
+  image = docker_image.nginx.image_id
+  
+  networks_advanced {
+    name = docker_network.app_net.name
+  }
+  
+  networks_advanced {
+    name = docker_network.persistence_net.name
+  }
+
+  ports {
+    internal = 80
+    external = 3003
   }
 }
