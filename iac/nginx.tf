@@ -1,7 +1,3 @@
-resource "docker_image" "nginx" {
-  name         = "nginx:stable-alpine3.21-perl"
-  keep_locally = false
-}
 
 resource "docker_container" "nginx_1" {  
   name  = "app-1"

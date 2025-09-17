@@ -1,11 +1,11 @@
-resource "docker_image" "proxy_image" {
+resource "docker_image" "nginx" {
   name         = "nginx:stable-alpine3.21-perl"
   keep_locally = false
 }
 
 resource "docker_container" "proxy" {  
   name  = "proxy"
-  image = docker_image.proxy_image.image_id
+  image = docker_image.nginx.image_id
   
   networks_advanced {
     name = docker_network.app_net.name
