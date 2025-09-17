@@ -4,7 +4,7 @@
   gather_facts: false
   vars:
     project_root: "{{ playbook_dir }}/.."
-    nginx_conf_host: "{{ project_root }}/host_volumes/nginx/conf.d"
+    nginx_conf_host: "{{ project_root }}/host_volumes/nginx_conf/"
     web1_host: "{{ project_root }}/host_volumes/web1"
     web2_host: "{{ project_root }}/host_volumes/web2"
     web3_host: "{{ project_root }}/host_volumes/web3"
