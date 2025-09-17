@@ -14,11 +14,6 @@ resource "docker_container" "nginx_1" {
   networks_advanced {
     name = docker_network.persistence_net.name
   }
-
-  ports {
-    internal = 80
-    external = 3001
-  }
 }
 
 resource "docker_container" "nginx_2" {  
@@ -32,11 +27,6 @@ resource "docker_container" "nginx_2" {
   networks_advanced {
     name = docker_network.persistence_net.name
   }
-
-  ports {
-    internal = 80
-    external = 3002
-  }
 }
 
 resource "docker_container" "nginx_3" {  
@@ -49,10 +39,5 @@ resource "docker_container" "nginx_3" {
   
   networks_advanced {
     name = docker_network.persistence_net.name
-  }
-
-  ports {
-    internal = 80
-    external = 3003
   }
 }
